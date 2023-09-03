@@ -14,7 +14,7 @@
 如果有多层嵌套要怎么办 父与子的关系应该怎么表达
 
 
-### 解决问题方案1 
+### 解决方案1 
 1. 声名一个 数组为 treeSource 为一维扁平数据 为源数据
 1. 声名一个 数组为 result 存放最后转化后的Tree
 2. 声名一个 对象为itemMap 存放 treeSource 中的每个节点
@@ -30,7 +30,7 @@
 
 12. 计算完成
 
-### 核心难点
+#### 核心难点
 
 1. 把源数据节点循环 以 每个节点 id 为 key {children:[]} 为value 存入到itemMap对象中 并合并
 
@@ -45,6 +45,13 @@
 
 3. 如果当前节点的 pid 为 1  那么在itemMap中找到 当前pid的数据 的children    itemMap[pid]["children"]
 4. 把 当前itemMap中以当前 id 为 key 的数据取出来  push 到 itemMap[pid]["children"] 中
+
+
+### 解决方案2 
+
+
+
+
 
 
 
@@ -103,6 +110,9 @@
 
 
 ```
+
+
+
 
 
 

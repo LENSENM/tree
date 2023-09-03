@@ -24,7 +24,7 @@
 
     const tree = arrayToTree(treeSource);
 
-    console.log("tree", tree);
+    console.log("解决方案1结果", tree);
 
     // 解决方案1
     function arrayToTree(treeSource) {
@@ -80,7 +80,26 @@
     }
 
 
+    // 解决方案2
 
+    const tree2 = arrayToTree2(treeSource);
+
+console.log("解决方案2结果", tree2);
+
+    function arrayToTree2(treeSource){
+
+        const Root=treeSource.filter(node=>node.pid==0).map(item=>(
+            {
+              ...item,children:treeSource.filter(v=>v.pid==item.id).map(v2=>({
+                ...v2,children:treeSource.filter(v3=>v3.pid==v2.id)
+              }))
+            }
+        ))
+
+        console.log("Root",Root)
+
+        return Root
+    }
 
 
 
