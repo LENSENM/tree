@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
+</head>
 
-  <body></body>
-  <script>
+<body></body>
+<script>
     const tree = [
-      {
-        id: 1,
-        name: "部门1",
-        pid: 0,
-        children: [
-          {
-            id: 2,
-            name: "部门2",
-            pid: 1,
-            children: [],
-          },
-          {
-            id: 3,
-            name: "部门3",
-            pid: 1,
+        {
+            id: 1,
+            name: "部门1",
+            pid: 0,
             children: [
-              {
-                id: 4,
-                name: "部门4",
-                pid: 3,
-                children: [
-                  {
-                    id: 5,
-                    name: "部门5",
-                    pid: 4,
+                {
+                    id: 2,
+                    name: "部门2",
+                    pid: 1,
                     children: [],
-                  },
-                ],
-              },
+                },
+                {
+                    id: 3,
+                    name: "部门3",
+                    pid: 1,
+                    children: [
+                        {
+                            id: 4,
+                            name: "部门4",
+                            pid: 3,
+                            children: [
+                                {
+                                    id: 5,
+                                    name: "部门5",
+                                    pid: 4,
+                                    children: [],
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
-          },
-        ],
-      },
+        },
     ];
 
-    
-    let res = [];
+
+
 
     function treeTurnflat(tree) {
 
-      tree.forEach((node) => {
-        console.log("node", node);
+        let res = []
 
-        res.push(node);
+        tree.forEach(node => {
 
-        if (Object.prototype.toString.call(node.children) == "[object Array]") {
-          treeTurnflat(node.children);
-        }
-      });
+            res.push(node);
+
+            if (node.children) {
+
+                node.children.forEach(node2 => {
+                    res.push(node2);
+
+                    if (node2.children) {
+                        node2.children.forEach(node3 => {
+                            res.push(node3)
+
+                            if (node3.children) {
+                                res.push(node3)
+                            }
+                        })
+                    }
+                })
+
+            }
+
+        })
+
+
+        return res
+
     }
 
-    treeTurnflat(tree);
+    const res = treeTurnflat(tree);
 
     console.log("res", res);
-  </script>
+</script>
+
 </html>
