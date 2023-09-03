@@ -81,24 +81,31 @@
 
 
     // 解决方案2
+    const currentNode=treeSource.filter(node=>node.pid==0)
 
-    const tree2 = arrayToTree2(treeSource);
+    const tree2 = arrayToTree2(currentNode,treeSource);
 
-console.log("解决方案2结果", tree2);
+    console.log("解决方案2结果", tree2);
 
-    function arrayToTree2(treeSource){
+   
+   /**
+    *  @param { currentNode }  currentNode 当前根节点
+    *  @param { treeSource  }  treeSource  源数据
+    */
+    
+   
+    function arrayToTree2(currentNode,treeSource){
 
-        const Root=treeSource.filter(node=>node.pid==0).map(item=>(
+        const tree=currentNode.map(item=>(
+      
             {
-              ...item,children:treeSource.filter(v=>v.pid==item.id).map(v2=>({
-                ...v2,children:treeSource.filter(v3=>v3.pid==v2.id)
-              }))
+              ...item,children:arrayToTree2(treeSource.filter(v=>v.pid==item.id),treeSource)
             }
+
         ))
 
-        console.log("Root",Root)
 
-        return Root
+        return tree
     }
 
 

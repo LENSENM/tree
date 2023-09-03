@@ -43,16 +43,17 @@
   { id: 2, name: "部门2", pid: 1 },
 ```
 
-3. 如果当前节点的 pid 为 1  那么在itemMap中找到 当前pid的数据 的children    itemMap[pid]["children"]
+3. 如果当前节点的 pid 为 1  那么在itemMap中找到 当前pid的数据 的 children    itemMap[pid]["children"]
 4. 把 当前itemMap中以当前 id 为 key 的数据取出来  push 到 itemMap[pid]["children"] 中
 
 
 ### 解决方案2 
+1. 使用递归
+2. currentNode 为当前根节点  treeSource 为源数据
+3. 在children中 对  currentNode 中的id 与  treeSource 中的pid 进行对比筛选 返回数组
+4. 继续在上一次得到的children中 进行对比  形成递归
 
-
-
-
-
+#### 注意点 使用map 每次递归进行返回
 
 
 ### 源数据
