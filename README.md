@@ -115,3 +115,19 @@
 
 ## Tree平铺
 将树形结构转为一维数组  使用递归
+在每个节点的children下面进行递归调用
+
+
+## 更改Tree的Key
+
+1. 新建立一个属性 node["newAttribute"] 删除旧属性 deltct node[oldAttribute]
+2. 在每个节点的children下面进行递归调用
+
+
+```js
+
+ node.lable = node["name"]
+
+ delete node["name"]
+
+```

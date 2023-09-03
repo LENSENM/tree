@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
-<body></body>
+<body>
+
+</body>
 <script>
+
     const tree = [
         {
             id: 1,
@@ -47,33 +50,44 @@
 
 
 
+    // 更改tree的key
 
-    function treeTurnflat(tree) {
+    function editTreeKey(tree) {
 
-        let res = []
+        tree=JSON.parse(JSON.stringify(tree))
+
 
         tree.forEach(node => {
 
+            if ("name" in node) {
 
-            res.push(node);
+                node.lable = node["name"]
 
-            if (node.children) {
+                delete node["name"]
 
-               res=res.concat(treeTurnflat(node.children))
+                if (node.children) {
 
+                    console.log("node.children", node.children)
+
+                    editTreeKey(node.children)
+
+                }
             }
 
-        })
+        });
 
-        return res
+        return tree
+
     }
 
-    const res = treeTurnflat(tree)
 
-    console.log("res", res);
+    const changeTree = editTreeKey(tree)
+
+    console.log("changeTree", changeTree)
+
+    console.log("tree", tree)
 
 
-    
 
 
 
